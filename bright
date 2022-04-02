@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Simple command from terminal, takes a value from 1-100 and adjusts the brightness both for the AMD integrated GPU and the NVIDIA GPU. Made this because backlight controls seem to default to the NVIDIA GPU only.
+
+# Example: >> 'bright 25' to set 25% brightness
+
+# Device: Made for the Lenovo Legion Slim 7 Running Pop!_OS
+
+# Requires sudo to run if backlight files haven't been changed to allow write permissions for any user / group and you are not root.
+function adjust_brightness () {
+	brightness_input=$1
+
+	([ -z "$brightness_input" ] || [[ ! $brightness_input =~ ^[0-9]+$ ]]) && echo Invalid Input && exit 1
+
+	[ $brightness_input -gt 100 ] && brightness_input=100
+	[ $brightness_input -lt 1 ] && brightness_input=1
+
+	amdgpu_input=$( printf %.$2f $(echo "$brightness_input/100.0*255.0"|bc -l))
+
+	echo $brightness_input > /sys/class/backlight/nvidia_wmi_ec_backlight/brightness
+	echo $amdgpu_input > /sys/class/backlight/amdgpu_bl0/brightness
+}
+
+adjust_brightness $1
