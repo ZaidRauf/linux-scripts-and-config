@@ -1,0 +1,1 @@
+/home/zaid/.vimrc
