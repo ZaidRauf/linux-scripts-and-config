@@ -24,3 +24,6 @@ set shiftwidth=4
 
 " Tabs as spaces
 set expandtab
+
+" Default opening things below
+set splitbelow
