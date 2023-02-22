@@ -25,5 +25,11 @@ set shiftwidth=4
 " Tabs as spaces
 set expandtab
 
-" Default opening things below
+" Default to opening vertical things to right
+set splitright
+
+" Default opening horizontal things below
 set splitbelow
+
+" Force windows not to take equal space
+set noequalalways
