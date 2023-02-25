@@ -33,3 +33,6 @@ set splitbelow
 
 " Force windows not to take equal space
 set noequalalways
+
+" Disable comment line continuation
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
